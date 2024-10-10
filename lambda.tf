@@ -42,12 +42,26 @@ data "aws_iam_policy_document" "inline_policy_cloudwatch" {
   }
 }
 
+# Commented by WTC
+# resource "aws_iam_role" "iam_for_lambda" {
+#   name               = "iam_for_wtc_group_02_lambda"
+#   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+
+#   inline_policy {
+#     name   = "policy-cloudwatch"
+#     policy = data.aws_iam_policy_document.inline_policy_cloudwatch.json
+#   }
+# }
+
+# Added by WTC 
 resource "aws_iam_role" "iam_for_lambda" {
   name               = "iam_for_wtc_group_02_lambda"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
 
-  inline_policy {
-    name   = "policy-cloudwatch"
-    policy = data.aws_iam_policy_document.inline_policy_cloudwatch.json
-  }
+# Added by WTC 
+resource "aws_iam_role_policy" "policy_cloudwatch" {
+  name   = "policy-cloudwatch"
+  role   = aws_iam_role.iam_for_lambda.id
+  policy = data.aws_iam_policy_document.inline_policy_cloudwatch.json
 }
