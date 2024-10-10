@@ -38,7 +38,7 @@ variable "environment" {
 variable "ec2_name" {
   description = "Name of the EC2 instance"
   type        = string
-  default     = "wtc-group-02-ec2-instance"
+  default     = "wtc-group-02-collab-ec2"
 }
 
 variable "instance_type" {
