@@ -17,7 +17,10 @@ data "aws_ami" "amazon_linux" {
 
 # Security group name
 data "aws_security_group" "existing_sg_name" {
-  name = var.sg_name
+  filter {
+    name   = "tag:Name"
+    values = [var.sg_name]
+  }
 }
 
 # subnet name
