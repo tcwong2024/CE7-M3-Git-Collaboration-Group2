@@ -53,11 +53,6 @@ variable "key_name" {
   default     = "wtc-keypair-useast1"
 }
 
-variable "subnet_id" {
-  description = "The subnet ID to launch the instance in"
-  type        = string
-}
-
 variable "sg_name" {
   description = "Name of EC2 security group"
   type        = string
