@@ -9,7 +9,7 @@ data "archive_file" "lambda" {
 # Defines the lambda function to be created using file
 
 resource "aws_lambda_function" "own_lambda" {
-  function_name    = var.lambda_function_name
+  function_name = var.lambda_function_name
   # update by wtc 
   #handler          = "lambda_function.lambda_handler"
   handler          = "${var.lambda_file_name}.lambda_handler"
