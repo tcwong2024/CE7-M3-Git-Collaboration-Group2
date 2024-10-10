@@ -15,3 +15,52 @@ variable "region" {
   description = "The AWS region where resources will be created"
   type        = string
 }
+
+# *****************************************************************************
+# Below variable for S3 bucket setup
+# *****************************************************************************
+
+variable "s3_bucket_name" {
+  description = "The name of the S3 bucket"
+  type        = string
+  default     = "wtc-group-02-s3-bucket"
+}
+
+variable "environment" {
+  description = "The environment type (e.g., dev, prod)"
+  type        = string
+  default     = "dev"
+}
+
+# *****************************************************************************
+# Below variable for EC2 instance setup
+# *****************************************************************************
+variable "ec2_name" {
+  description = "Name of the EC2 instance"
+  type        = string
+  default     = "wtc-group-02-collab-ec2"
+}
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "key_name" {
+  description = "EC2 Key Pair"
+  type        = string
+  default     = "wtc-keypair-useast1"
+}
+
+variable "sg_name" {
+  description = "Name of EC2 security group"
+  type        = string
+  default     = "wtc-eom2-nv-ssh-http-https"
+}
+
+variable "subnet_name" {
+  description = "Name of subnet to use"
+  type        = string
+  default     = "wtc-eom2-public-subnet-us-east-1a"
+}
