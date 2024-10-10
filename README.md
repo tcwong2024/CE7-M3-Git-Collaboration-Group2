@@ -1,2 +1,1 @@
-# CE7-M3-Git-Collaboration-Group2
-CE7-M3-Git-Collaboration-Group2
+Creating AWS lambda function that prints a Good Afternoon message
