@@ -9,3 +9,9 @@ variable "lambda_file_name" {
   type        = string
   default     = "wtc_group_02_lambda_function"
 }
+
+# Added by WTC
+variable "region" {
+  description = "The AWS region where resources will be created"
+  type        = string
+}
