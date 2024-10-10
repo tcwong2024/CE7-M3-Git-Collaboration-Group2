@@ -26,6 +26,9 @@ jobs:
    - name: Terraform Init
      run: terraform init
 
+   - name: Terraform Validate
+     run: terraform validate
+
    - name: Terraform Apply
      #run: terraform apply -no-color -auto-approve
      #run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }}
