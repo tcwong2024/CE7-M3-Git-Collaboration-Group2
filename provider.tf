@@ -15,4 +15,7 @@ terraform {
 }
 
 # Configure the AWS Provider
-provider "aws" {}
+provider "aws" {
+  # Added by WTC
+  region = var.region
+}
