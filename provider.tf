@@ -1,8 +1,9 @@
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
+      source = "hashicorp/aws"
+      # version = "~> 5.0"
+      version = "~> 5.70.0"
     }
     # Added by wtc - Move archive provider from lambda.tf
     archive = {
