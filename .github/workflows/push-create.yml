@@ -30,9 +30,14 @@ jobs:
      run: terraform validate
 
    - name: Terraform Apply
+     # Get from local variable.tf
      #run: terraform apply -no-color -auto-approve
+     # Get from Github repository variable lambda_function_name
      #run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }}
-     run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
+     # Get from Github repository variable lambda_function_name and REGION
+     #run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
+     # Get from local variable.tf
+     run: terraform apply -no-color -auto-approve --var region=${{ vars.REGION }}
 
 
    - name: Export terraform outputs
@@ -46,4 +51,5 @@ jobs:
    - name: Terraform Destroy
      #run: terraform destroy -no-color -auto-approve
      #run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }}
-     run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
+     #run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
+     run: terraform destroy -no-color -auto-approve --var-file="env.tfvars" --var region=${{ vars.REGION }}
