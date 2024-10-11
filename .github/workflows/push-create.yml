@@ -1,0 +1,60 @@
+name: Terraform Apply & Destroy
+run-name: Running Terraform Apply & Destroy by ${{ github.actor }}
+
+on:
+ push:
+   branches:
+     - main
+
+jobs:
+ Terraform-Create-And-Destroy:
+   runs-on: ubuntu-latest
+   steps:
+   - name: Checkout
+     uses: actions/checkout@v3
+
+   - name: Configure AWS credentials
+     uses: aws-actions/configure-aws-credentials@v1
+     with:
+       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       aws-region: us-east-1
+
+   - name: Setup Terraform
+     uses: hashicorp/setup-terraform@v3
+
+   - name: Terraform Init
+     run: terraform init
+
+   - name: Terraform Validate
+     run: terraform validate
+
+   - name: Terraform Apply
+     # Get from local variable.tf
+     #run: terraform apply -no-color -auto-approve
+     # Get from Github repository variable lambda_function_name
+     #run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }}
+     # Get from Github repository variable lambda_function_name and REGION
+     #run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
+     # Get from local variable.tf
+     #run: terraform apply -no-color -auto-approve --var region=${{ vars.REGION }}
+     # Get from local variable.tf and SNS_TOPIC_ENDPOINT_EMAIL
+     run: terraform apply -no-color -auto-approve --var region=${{ vars.REGION }} --var sns_topic_endpoint_email=${{vars.SNS_TOPIC_ENDPOINT_EMAIL}}
+
+
+   - name: Export terraform outputs
+     id: tfout
+     run: |
+       terraform output
+
+   - name: Wait for 3min
+     run: sleep 180
+
+   - name: Terraform Destroy
+     #run: terraform destroy -no-color -auto-approve
+     #run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }}
+     #run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
+     #run: terraform destroy -no-color -auto-approve --var region=${{ vars.REGION }}
+     run: terraform destroy -no-color -auto-approve --var region=${{ vars.REGION }} --var sns_topic_endpoint_email=${{vars.SNS_TOPIC_ENDPOINT_EMAIL}}
+     
+     
