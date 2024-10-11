@@ -37,8 +37,9 @@ jobs:
      # Get from Github repository variable lambda_function_name and REGION
      #run: terraform apply -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
      # Get from local variable.tf
-     run: terraform apply -no-color -auto-approve --var region=${{ vars.REGION }}
-
+     #run: terraform apply -no-color -auto-approve --var region=${{ vars.REGION }}
+     # Get from local variable.tf and SNS_TOPIC_ENDPOINT_EMAIL
+     run: terraform apply -no-color -auto-approve --var region=${{ vars.REGION }} --var sns_topic_endpoint_email=${{vars.SNS_TOPIC_ENDPOINT_EMAIL}}
 
    - name: Export terraform outputs
      id: tfout
@@ -52,5 +53,5 @@ jobs:
      #run: terraform destroy -no-color -auto-approve
      #run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }}
      #run: terraform destroy -no-color -auto-approve --var lambda_function_name=${{ vars.lambda_function_name }} --var region=${{ vars.REGION }}
-     run: terraform destroy -no-color -auto-approve --var region=${{ vars.REGION }}
-     
+     #run: terraform destroy -no-color -auto-approve --var region=${{ vars.REGION }}
+     run: terraform destroy -no-color -auto-approve --var region=${{ vars.REGION }} --var sns_topic_endpoint_email=${{vars.SNS_TOPIC_ENDPOINT_EMAIL}}     

@@ -65,3 +65,20 @@ variable "subnet_name" {
   type        = string
   default     = "wtc-eom2-public-subnet-us-east-1a"
 }
+
+# *****************************************************************************
+# Below variable for SNS setup
+# *****************************************************************************
+
+# SNS Topic Name
+variable "sns_topic_name" {
+  description = "The name of the SNS topic"
+  type        = string
+  default     = "wtc_group_02_notification_topic"
+}
+
+# SNS Topic Subscription Endpoint (email address)
+variable "sns_topic_endpoint_email" {
+  description = "The email address for the SNS topic subscription"
+  type        = string
+}
