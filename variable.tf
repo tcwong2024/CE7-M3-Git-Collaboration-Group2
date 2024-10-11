@@ -1,7 +1,7 @@
 variable "lambda_function_name" {
   description = "Name of lambda function"
   type        = string
-  #default     = "wtc-group-02-tf-lambda-fn"
+  # default     = "wtc-group-02-tf-lambda-fn"
   default = "wtc-group-02-tf-lambda-new"
 }
 
